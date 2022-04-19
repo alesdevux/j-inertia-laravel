@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,5 +13,5 @@ Route::middleware([
 ])->group(function () {
   Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 
-  Route::resource('notes', 'NotesController');
+  Route::resource('notes', NoteController::class);
 });
