@@ -13,9 +13,8 @@ class NoteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    return Inertia::render('Notes/Index', [
-      'notes' => Note::latest()->get(),
-    ]);
+    $notes = Note::latest()->get();
+    return Inertia::render('Notes/Index', compact('notes'));
   }
 
   /**
