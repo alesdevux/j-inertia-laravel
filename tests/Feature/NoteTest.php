@@ -12,7 +12,7 @@ use Tests\TestCase;
 class NoteTest extends TestCase {
   use RefreshDatabase;
 
-  public function test_notes_index_view_has_notes() {
+  public function test_list_notes_appear_in_notes_view() {
     $this->withExceptionHandling();
 
     User::factory()->create();
@@ -29,7 +29,7 @@ class NoteTest extends TestCase {
     $response->assertSee('This is a test note');
   }
 
-  public function test_note_show_view_has_note() {
+  public function test_note_appear_in_note_view() {
     $this->withExceptionHandling();
 
     User::factory()->create();
@@ -44,5 +44,22 @@ class NoteTest extends TestCase {
     $response = $this->get('/notes/' . $note->id, [$note]);
     $response->assertStatus(200);
     $response->assertSee('This is a test note');
+  }
+  
+  public function test_view_edit_form() {
+    $this->withExceptionHandling();
+
+    User::factory()->create();
+    $user = Auth::loginUsingId(3);
+    $this->actingAs($user);
+
+    $note = Note::factory()->create([
+      'excerpt' => 'This is a test note for editing',
+      'content' => 'This is the content of the test note for editing',
+    ]);
+    
+    $response = $this->get(route('notes.edit', $note->id, [$note]));
+    $response->assertStatus(200);
+    $response->assertSee('This is a test note for editing');
   }
 }
