@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { Link } from '@inertiajs/inertia-vue3';
 </script>
 <script>
   export default {
@@ -35,14 +36,14 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                   {{ note.excerpt }}
                 </td>
                 <td class="px-4 py-2 border">
-                  <inertia-link :href="route('notes.show', note.id)">
+                  <Link :href="route('notes.show', note.id)">
                     Ver
-                  </inertia-link>
+                  </Link>
                 </td>
                 <td class="px-4 py-2 border">
-                  <inertia-link :href="route('notes.edit', note.id)">
+                  <Link :href="route('notes.edit', note.id)">
                     Editar
-                  </inertia-link>
+                  </Link>
                 </td>
               </tr>
             </table>
