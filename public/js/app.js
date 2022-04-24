@@ -23466,6 +23466,11 @@ var __default__ = {
   methods: {
     updateNote: function updateNote() {
       this.$inertia.put(this.route('notes.update', this.note.id), this.form);
+    },
+    destroyNote: function destroyNote() {
+      if (confirm('Are you sure to delete this note?')) {
+        this.$inertia["delete"](this.route('notes.destroy', this.note.id));
+      }
     }
   }
 };
@@ -23505,6 +23510,13 @@ __webpack_require__.r(__webpack_exports__);
 var __default__ = {
   props: {
     notes: Array
+  },
+  methods: {
+    destroyNote: function destroyNote($id) {
+      if (confirm('Are you sure to delete this note?')) {
+        this.$inertia["delete"](this.route('notes.destroy', $id));
+      }
+    }
   }
 };
 
@@ -27498,7 +27510,11 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_8 = {
+  "class": "flex justify-between"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700"
 }, " Save note ", -1
 /* HOISTED */
@@ -27514,10 +27530,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         "class": "flex flex-col gap-4 p-4 mt-5 bg-white shadow md:col-span-2 md:mt-0 md:rounded-md",
-        onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.updateNote && $options.updateNote.apply($options, arguments);
         }, ["prevent"])),
-        onKeydown: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onKeydown: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.updateNote && $options.updateNote.apply($options, arguments);
         }, ["prevent"]), ["enter"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
@@ -27536,7 +27552,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, "\n              ", 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.content]])]), _hoisted_8], 32
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.content]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        "class": "px-4 py-2 font-bold text-red-300 rounded-md hover:text-white hover:bg-red-500",
+        onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return $options.destroyNote && $options.destroyNote.apply($options, arguments);
+        }, ["prevent"]))
+      }, " Delete note "), _hoisted_9])], 32
       /* HYDRATE_EVENTS */
       )])])])];
     }),
@@ -27603,14 +27624,18 @@ var _hoisted_9 = {
   "class": "px-4 py-2 border"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ver ");
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" View ");
 
 var _hoisted_11 = {
   "class": "px-4 py-2 border"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Editar ");
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit ");
 
+var _hoisted_13 = {
+  "class": "px-4 py-2 text-gray-600 border"
+};
+var _hoisted_14 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["AppLayout"], {
     title: "Notes"
@@ -27656,7 +27681,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])])]);
+        , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+          onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+            return $options.destroyNote(note.id);
+          }, ["prevent"])
+        }, " Delete ", 8
+        /* PROPS */
+        , _hoisted_14)])]);
       }), 256
       /* UNKEYED_FRAGMENT */
       ))])])])])])];

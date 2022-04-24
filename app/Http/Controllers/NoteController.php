@@ -88,6 +88,7 @@ class NoteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function destroy(Note $note) {
-    //
+    $note->delete();
+    return redirect()->route('notes.index');
   }
 }

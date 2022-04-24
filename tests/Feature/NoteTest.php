@@ -113,4 +113,25 @@ class NoteTest extends TestCase {
     ]);
     $response->assertRedirect('/notes');
   }
+
+  public function test_note_can_be_deleted() {
+    $this->withExceptionHandling();
+
+    User::factory()->create(['id' => 8]);
+    $user = Auth::loginUsingId(8);
+    $this->actingAs($user);
+
+    $note = Note::factory()->create([
+      'excerpt' => 'This is a test note for deleting',
+      'content' => 'This is the content of the test note for deleting',
+    ]);
+    
+    $response = $this->delete(route('notes.destroy', $note->id, [$note]));
+    $response->assertStatus(302);
+    $this->assertDatabaseMissing('notes', [
+      'excerpt' => 'This is a test note for deleting',
+      'content' => 'This is the content of the test note for deleting',
+    ]);
+    $response->assertRedirect('/notes');
+  }
 }

@@ -6,7 +6,14 @@ import { Link } from '@inertiajs/inertia-vue3';
   export default {
     props: {
       notes: Array,
-    }
+    },
+    methods: {
+      destroyNote($id) {
+        if (confirm('Are you sure to delete this note?')) {
+          this.$inertia.delete(this.route('notes.destroy', $id));
+        }
+      },
+    },
   }
 </script>
 
@@ -42,13 +49,18 @@ import { Link } from '@inertiajs/inertia-vue3';
                 </td>
                 <td class="px-4 py-2 border">
                   <Link :href="route('notes.show', note.id)">
-                    Ver
+                    View
                   </Link>
                 </td>
                 <td class="px-4 py-2 border">
                   <Link :href="route('notes.edit', note.id)">
-                    Editar
+                    Edit
                   </Link>
+                </td>
+                <td class="px-4 py-2 text-gray-600 border">
+                  <button @click.prevent="destroyNote(note.id)">
+                    Delete
+                  </button>
                 </td>
               </tr>
             </table>

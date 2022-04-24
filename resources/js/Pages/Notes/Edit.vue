@@ -19,6 +19,11 @@ import { Link } from '@inertiajs/inertia-vue3';
       updateNote() {
         this.$inertia.put(this.route('notes.update', this.note.id), this.form);
       },
+      destroyNote() {
+        if (confirm('Are you sure to delete this note?')) {
+          this.$inertia.delete(this.route('notes.destroy', this.note.id));
+        }
+      },
     },
   }
 </script>
@@ -66,9 +71,14 @@ import { Link } from '@inertiajs/inertia-vue3';
               >
               </textarea>
             </div>
-            <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700">
-              Save note
-            </button>
+            <div class="flex justify-between">
+              <button class="px-4 py-2 font-bold text-red-300 rounded-md hover:text-white hover:bg-red-500" @click.prevent="destroyNote">
+                Delete note
+              </button>
+              <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700">
+                Save note
+              </button>
+            </div>
           </form>
         </div>
       </div>
