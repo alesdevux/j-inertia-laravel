@@ -446,6 +446,13 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.form-input::placeholder,.form-textarea::placeholder {
   color: #6b7280;
   opacity: 1;
+}.form-input::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}.form-input::-webkit-date-and-time-value {
+  min-height: 1.5em;
+}.form-input::-webkit-datetime-edit,.form-input::-webkit-datetime-edit-year-field,.form-input::-webkit-datetime-edit-month-field,.form-input::-webkit-datetime-edit-day-field,.form-input::-webkit-datetime-edit-hour-field,.form-input::-webkit-datetime-edit-minute-field,.form-input::-webkit-datetime-edit-second-field,.form-input::-webkit-datetime-edit-millisecond-field,.form-input::-webkit-datetime-edit-meridiem-field {
+  padding-top: 0;
+  padding-bottom: 0;
 }.prose {
   color: var(--tw-prose-body);
   max-width: 65ch;

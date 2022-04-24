@@ -14,6 +14,19 @@ import { Link } from '@inertiajs/inertia-vue3';
         }
       },
     },
+    data() {
+      return {
+        search: '',
+      };
+    },
+    watch: {
+      // search() {
+      //   this.$inertia.reload();
+      // },
+      search: function(value) {
+        this.$inertia.replace(this.route('notes.index', { search: value }));
+      },
+    },
   }
 </script>
 
@@ -37,11 +50,14 @@ import { Link } from '@inertiajs/inertia-vue3';
             </div>
           </div>
           <div class="p-4 mt-5 bg-white shadow md:col-span-2 md:mt-0 md:rounded-md">
-            <Link :href="route('notes.create')"
-              class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-            >
-              Create new note
-            </Link>
+            <div class="flex justify-between mb-4">
+              <input type="text" class="rounded-md shadow-sm form-input" placeholder="Search..." v-model="search">
+              <Link :href="route('notes.create')"
+                class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+              >
+                Create new note
+              </Link>
+            </div>
             <table>
               <tr v-for="note in notes">
                 <td class="px-4 py-2 border">

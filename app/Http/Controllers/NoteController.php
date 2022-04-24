@@ -12,8 +12,10 @@ class NoteController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function index() {
-    $notes = Note::latest()->get();
+  public function index(Request $request) {
+    $notes = Note::latest()
+      ->where('excerpt', 'LIKE', '%' . request('search') . '%')
+      ->get();
     return Inertia::render('Notes/Index', compact('notes'));
   }
 
