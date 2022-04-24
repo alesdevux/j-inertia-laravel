@@ -15,9 +15,7 @@ class NoteTest extends TestCase {
   public function test_list_notes_appear_in_notes_view() {
     $this->withExceptionHandling();
 
-    User::factory()->create([
-      'id' => 2,
-    ]);
+    User::factory()->create(['id' => 2]);
     $user = Auth::loginUsingId(2);
     $this->actingAs($user);
 
@@ -34,9 +32,7 @@ class NoteTest extends TestCase {
   public function test_note_appear_in_note_view() {
     $this->withExceptionHandling();
 
-    User::factory()->create([
-      'id' => 3,
-    ]);
+    User::factory()->create(['id' => 3]);
     $user = Auth::loginUsingId(3);
     $this->actingAs($user);
 
@@ -53,9 +49,7 @@ class NoteTest extends TestCase {
   public function test_view_edit_form() {
     $this->withExceptionHandling();
 
-    User::factory()->create([
-      'id' => 4,
-    ]);
+    User::factory()->create(['id' => 4]);
     $user = Auth::loginUsingId(4);
     $this->actingAs($user);
 
@@ -72,9 +66,7 @@ class NoteTest extends TestCase {
   public function test_can_be_updated() {
     $this->withExceptionHandling();
 
-    User::factory()->create([
-      'id' => 5,
-    ]);
+    User::factory()->create(['id' => 5]);
     $user = Auth::loginUsingId(5);
     $this->actingAs($user);
 
@@ -90,5 +82,16 @@ class NoteTest extends TestCase {
       'content' => 'This is the content of the test note for editing',
     ]);
     $response->assertRedirect('/notes');
+  }
+
+  public function test_view_create_form() {
+    $this->withExceptionHandling();
+
+    User::factory()->create(['id' => 6]);
+    $user = Auth::loginUsingId(6);
+    $this->actingAs($user);
+
+    $response = $this->get(route('notes.create'));
+    $response->assertStatus(200);
   }
 }

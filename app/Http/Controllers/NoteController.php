@@ -23,7 +23,7 @@ class NoteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create() {
-    //
+    return Inertia::render('Notes/Create');
   }
 
   /**

@@ -793,6 +793,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: -1px;
 }.block {
   display: block;
+}.inline-block {
+  display: inline-block;
 }.flex {
   display: flex;
 }.inline-flex {
@@ -996,6 +998,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }.bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1160,6 +1165,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.25;
 }.leading-4 {
   line-height: 1rem;
+}.leading-none {
+  line-height: 1;
 }.tracking-widest {
   letter-spacing: 0.1em;
 }.tracking-wider {
@@ -1294,6 +1301,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}.hover\:border-transparent:hover {
+  border-color: transparent;
 }.hover\:bg-indigo-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
@@ -1315,6 +1324,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }.hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1330,6 +1342,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.hover\:text-gray-900:hover {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}.hover\:text-teal-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(20 184 166 / var(--tw-text-opacity));
 }.focus\:z-10:focus {
   z-index: 10;
 }.focus\:border-blue-300:focus {
@@ -1562,6 +1577,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }@media (min-width: 1024px) {.lg\:col-span-4 {
     grid-column: span 4 / span 4;
+  }.lg\:mt-0 {
+    margin-top: 0px;
   }.lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
