@@ -10,11 +10,15 @@ import { Link } from '@inertiajs/inertia-vue3';
     data() {
       return {
         form: {
-          id: this.note.id,
           excerpt: this.note.excerpt,
           content: this.note.content,
         },
       };
+    },
+    methods: {
+      updateNote() {
+        this.$inertia.put(this.route('notes.update', this.note.id), this.form);
+      },
     },
   }
 </script>
@@ -38,7 +42,10 @@ import { Link } from '@inertiajs/inertia-vue3';
               </p>
             </div>
           </div>
-          <form class="flex flex-col gap-4 p-4 mt-5 bg-white shadow md:col-span-2 md:mt-0 md:rounded-md">
+          <form class="flex flex-col gap-4 p-4 mt-5 bg-white shadow md:col-span-2 md:mt-0 md:rounded-md"
+            @submit.prevent="updateNote"
+            @keydown.enter.prevent="updateNote"
+          >
             <div>
               <label for="excerpt" class="block text-sm font-medium text-gray-700">
                 Excerpt

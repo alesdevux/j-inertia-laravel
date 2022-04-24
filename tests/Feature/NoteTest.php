@@ -15,8 +15,10 @@ class NoteTest extends TestCase {
   public function test_list_notes_appear_in_notes_view() {
     $this->withExceptionHandling();
 
-    User::factory()->create();
-    $user = Auth::loginUsingId(1);
+    User::factory()->create([
+      'id' => 2,
+    ]);
+    $user = Auth::loginUsingId(2);
     $this->actingAs($user);
 
     $notes = Note::factory()->create([
@@ -32,8 +34,10 @@ class NoteTest extends TestCase {
   public function test_note_appear_in_note_view() {
     $this->withExceptionHandling();
 
-    User::factory()->create();
-    $user = Auth::loginUsingId(2);
+    User::factory()->create([
+      'id' => 3,
+    ]);
+    $user = Auth::loginUsingId(3);
     $this->actingAs($user);
 
     $note = Note::factory()->create([
@@ -49,8 +53,10 @@ class NoteTest extends TestCase {
   public function test_view_edit_form() {
     $this->withExceptionHandling();
 
-    User::factory()->create();
-    $user = Auth::loginUsingId(3);
+    User::factory()->create([
+      'id' => 4,
+    ]);
+    $user = Auth::loginUsingId(4);
     $this->actingAs($user);
 
     $note = Note::factory()->create([
@@ -61,5 +67,28 @@ class NoteTest extends TestCase {
     $response = $this->get(route('notes.edit', $note->id, [$note]));
     $response->assertStatus(200);
     $response->assertSee('This is a test note for editing');
+  }
+
+  public function test_can_be_updated() {
+    $this->withExceptionHandling();
+
+    User::factory()->create([
+      'id' => 5,
+    ]);
+    $user = Auth::loginUsingId(5);
+    $this->actingAs($user);
+
+    $note = Note::factory()->create();
+    
+    $response = $this->put(route('notes.update', $note->id, [$note]), [
+      'excerpt' => 'Hola que tal',
+      'content' => 'This is the content of the test note for editing',
+    ]);
+    $response->assertStatus(302);
+    $this->assertDatabaseHas('notes', [
+      'excerpt' => 'Hola que tal',
+      'content' => 'This is the content of the test note for editing',
+    ]);
+    $response->assertRedirect('/notes');
   }
 }

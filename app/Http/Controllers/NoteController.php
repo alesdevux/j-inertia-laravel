@@ -64,7 +64,13 @@ class NoteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, Note $note) {
-    //
+    $request->validate([
+      'excerpt' => 'required',
+      'content' => 'required',
+    ]);
+
+    $note->update($request->all());
+    return redirect()->route('notes.index');
   }
 
   /**

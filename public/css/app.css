@@ -1538,11 +1538,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     text-align: left;
   }.sm\:text-right {
     text-align: right;
-  }.sm\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }.sm\:leading-5 {
-    line-height: 1.25rem;
   }
 }@media (min-width: 768px) {.md\:col-span-2 {
     grid-column: span 2 / span 2;
