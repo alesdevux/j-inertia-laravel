@@ -94,4 +94,23 @@ class NoteTest extends TestCase {
     $response = $this->get(route('notes.create'));
     $response->assertStatus(200);
   }
+
+  public function test_note_can_be_created() {
+    $this->withExceptionHandling();
+
+    User::factory()->create(['id' => 7]);
+    $user = Auth::loginUsingId(7);
+    $this->actingAs($user);
+
+    $response = $this->post(route('notes.store'), [
+      'excerpt' => 'Hola que tal',
+      'content' => 'This is the content of the test note for editing',
+    ]);
+    $response->assertStatus(302);
+    $this->assertDatabaseHas('notes', [
+      'excerpt' => 'Hola que tal',
+      'content' => 'This is the content of the test note for editing',
+    ]);
+    $response->assertRedirect('/notes');
+  }
 }

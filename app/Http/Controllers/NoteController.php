@@ -33,7 +33,15 @@ class NoteController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request) {
-    //
+    $request->validate([
+      'excerpt' => 'required',
+      'content' => 'required',
+    ]);
+
+    $note = Note::create($request->all());
+    $note->save();
+
+    return redirect()->route('notes.index');
   }
 
   /**

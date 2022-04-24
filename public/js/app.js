@@ -23414,7 +23414,7 @@ var __default__ = {
   },
   methods: {
     storeNote: function storeNote() {
-      this.$inertia.put(this.route('notes.store', this.note.id), this.form);
+      this.$inertia.post(this.route('notes.store'), this.form);
     }
   }
 };
